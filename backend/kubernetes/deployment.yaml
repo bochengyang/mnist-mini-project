@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mnist-mini-project-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mnist-mini-project
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: mnist-mini-project
+    spec:
+      containers:
+      - name: mnist-mini-project
+        image: mnist-mnist-project:latest
+        ports:
+        - containerPort: 5000
+        # https://medium.com/bb-tutorials-and-thoughts/how-to-use-own-local-doker-images-with-minikube-2c1ed0b0968
+        imagePullPolicy: Never
+        args: ["mnist-mini-project"]
+        resources: {}
